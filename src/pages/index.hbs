@@ -1,0 +1,10 @@
+{{!< main}}
+
+<h2 class="page__header">Please enter to you account</h2>
+
+<form method="post" name="login" class="form">
+{{> 'input/input' page="login" type="text" name="login" value="Логин"}}
+{{> 'input/input' page="login" type="password" name="password" value="Пароль"}}
+{{> "button/button" page="login" type="button" title="Войти"}}
+{{> "link/link" index="signin" page="login" title="Зарегистрироваться"}}
+</form>

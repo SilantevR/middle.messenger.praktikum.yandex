@@ -1,0 +1,31 @@
+{{!< main}}
+
+<h2 class="page__header">Your account</h2>
+
+<div class="form">
+  <div class="account__information">
+    {{#each account}}
+      {{#if data}}
+        {{> 'info/info'}}
+      {{/if}}
+    {{/each }}
+  </div>
+  <div class = "account__change__container">
+    <img
+      alt="profile__logo"
+      src="../assets/img/default_profile_logo.png"
+      class="profile__logo"
+    />
+
+    <div class="account__buttons">
+        {{> "link/link" index="settings" page="account" title="Изменить данные"}}
+        <form method="post" name="photo" class="account__link">
+          <label class="account__link__button  button">
+              <input style="display: none;" type="file" name="file">		
+              <span>Изменить фото</span>
+          </label>
+        </form>
+        {{> "button/button" page="account" type="button" title="Выйти"}}
+    </div>
+  </div>
+</div>

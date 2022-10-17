@@ -1,0 +1,26 @@
+.info__item {
+  &:nth-child(n + 2) {
+    margin-top: 20px;
+  }
+}
+
+.account__change__container {
+  display: flex;
+  margin-top: 40px;
+}
+
+.profile__logo {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.account__link {
+  &__button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  margin-bottom: 10px;
+}
