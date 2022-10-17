@@ -1,0 +1,29 @@
+.form {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.login__button,
+.signin__button,
+.settings__button {
+  &:first-of-type {
+    margin-top: 40px;
+  }
+}
+
+.login__button,
+.signin__button,
+.settings__button {
+  &:nth-of-type(n + 2) {
+    margin-top: 10px;
+  }
+}
+
+.login__link,
+.signin__link {
+  margin-top: 10px;
+}

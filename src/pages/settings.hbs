@@ -1,0 +1,20 @@
+{{!< main}}
+
+<h2 class="page__header">Edite account</h2>
+
+<form method="put" name="settings" class="form">
+{{#each account}}
+  {{#if data}}
+    {{> 'input/input' page="settings"}}
+  {{/if}}
+{{/each }}
+{{#each account}}
+  {{#if password}}
+    {{> 'input/password' page="settings"}}
+  {{/if}}
+{{/each }}
+
+
+{{> "button/button" page="settings" type="button" title="Редактировать"}}
+{{> "button/button" page="settings" type="button" title="Выйти"}}
+</form>
