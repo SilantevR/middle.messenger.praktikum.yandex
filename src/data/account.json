@@ -1,0 +1,45 @@
+[
+  {
+    "field": "Почта",
+    "data": "true",
+    "type": "email",
+    "name": "email",
+    "value": "Ivaska87@yandex.ru"
+  },
+  {
+    "field": "Логин",
+    "data": "true",
+    "type": "text",
+    "name": "login",
+    "value": "Ivaska87"
+  },
+  { "field": "Имя", "profile": "true", "name": "first_name", "value": "Иван" },
+  {
+    "field": "Фамилия",
+    "data": "true",
+    "type": "text",
+    "name": "last_name",
+    "value": "Иванов"
+  },
+  {
+    "field": "Имя в чате",
+    "data": "true",
+    "type": "text",
+    "name": "display_name",
+    "value": "Ivan_Ivanov"
+  },
+  {
+    "field": "Телефон",
+    "data": "true",
+    "type": "tel",
+    "name": "phone",
+    "value": "+7(909)9673030"
+  },
+  {
+    "field": "Пароль",
+    "password": "true",
+    "type": "password",
+    "name": "password",
+    "value": "IvanIvanov3030"
+  }
+]
