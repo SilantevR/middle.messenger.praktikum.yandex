@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./develop",
+    "target": "es2017",
+    "declaration": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "noEmitOnError": false,
+    "typeRoots": ["node_modules/@types", "types/app.d.ts"]
+  }
+}

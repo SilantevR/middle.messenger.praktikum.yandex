@@ -7,4 +7,4 @@
 <br>
 Netlify: [Netlify]()
 <br>
-#PR: [№1]()
+#PR: [№2](https://github.com/SilantevR/middle.messenger.praktikum.yandex/pull/2)
