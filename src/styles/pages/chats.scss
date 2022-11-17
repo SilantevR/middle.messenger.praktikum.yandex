@@ -1,8 +1,8 @@
 .chats {
   display: flex;
   height: 100%;
-  width: 100%;
 
+  width: 100%;
   &__menu {
     height: 100%;
     display: flex;
@@ -37,10 +37,12 @@
       }
     }
 
+
     &__container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       flex-direction: column;
       flex-grow: 1;
       background-color: #fff;
@@ -56,6 +58,7 @@
         color: #f8a488;
         font-size: 16px;
         text-align: center;
+
         background-image: url("../../../static/search_icon.svg");
         background-size: 25px;
         background-repeat: no-repeat;
@@ -86,6 +89,7 @@
   &__messages {
     display: flex;
     flex-grow: 1;
+
     height: 100%;
     justify-content: space-between;
     flex-direction: column;

@@ -8,3 +8,4 @@
 Netlify: [Netlify](https://stirring-unicorn-bfb7c6.netlify.app/settings.html)
 <br>
 #PR: [№2](https://github.com/SilantevR/middle.messenger.praktikum.yandex/pull/2)
+
