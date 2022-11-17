@@ -1,0 +1,6 @@
+/dist
+/node_modules
+/parcel-cache
+/static 
+.github
+/src/data

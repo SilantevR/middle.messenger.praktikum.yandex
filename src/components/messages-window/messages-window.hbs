@@ -1,0 +1,7 @@
+<div class="messages__window">
+  {{#if messages.data}}
+      {{#each messages.data}}
+        {{{Message text=text date=date incoming=incoming}}}
+      {{/each}}
+  {{/if}}
+</div>

@@ -1,0 +1,30 @@
+<div class="body">
+  <div class="chats">
+      <div class="chats__menu">
+        <div class="chats__menu__container">
+          <input class="chats__menu__container__search" type="search" name="search" placeholder="Введите название чата"/>
+            {{{Chat}}} 
+        </div>
+        <div class="chats__menu__profile">
+          <div class="chats__menu__profile__container">
+            <img src="./default_profile_logo.png" class="chats__menu__profile__container__image" />
+          </div>
+          <div class="chats__menu__profile__link">
+            <a href="./profile" class="chats__menu__profile__link__text">Ваш профиль</a>
+          </div>
+        </div>
+      </div>
+      <div class="chats__messages">
+          <div class="chats__messages__wrapper__window">
+              {{{MessagesWindow}}}
+          </div>
+          <div class="chats__messages__wrapper">
+            <form method="patch" name="message" class="chats__messages__wrapper__form">
+              {{{Button  page="message" type="submit" title="Отправить"}}}
+              {{{MessageInput page="message" type="textarea" name="message" value="Введите текст сообщения" text="" required="false"}}}
+            </form>
+          </div>
+      </div> 
+  </div>
+  
+</div>

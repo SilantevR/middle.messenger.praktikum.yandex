@@ -1,11 +1,14 @@
 .chats {
   display: flex;
   height: 100%;
+
+  width: 100%;
   &__menu {
     height: 100%;
     display: flex;
     flex-direction: column;
     width: 380px;
+
     &__profile {
       width: 100%;
       background-color: #2a2f3f;
@@ -14,30 +17,38 @@
       padding: 0 30px;
       align-items: center;
       margin-top: auto;
+
       &__container__image {
         width: 50px;
         height: 50px;
         border-radius: 50%;
         margin-right: 10px;
       }
+
       &__link__text {
         text-decoration: none;
         color: #fff;
         font-weight: bold;
         font-size: 20px;
+
         &:hover {
           text-decoration: underline;
         }
       }
     }
+
+
     &__container {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+
       flex-direction: column;
       flex-grow: 1;
       background-color: #fff;
       width: 100%;
       padding: 30px;
+
       &__search {
         width: 100%;
         height: 40px;
@@ -47,18 +58,30 @@
         color: #f8a488;
         font-size: 16px;
         text-align: center;
-        background-image: url("../assets/img/search_icon.svg");
+
+        background-image: url("../../../static/search_icon.svg");
         background-size: 25px;
         background-repeat: no-repeat;
         background-position: left 20px center;
+
         &::placeholder {
           color: #f8a488;
         }
       }
-      &__list {
+
+      &__wrapper {
         width: 100%;
         display: flex;
+        flex-grow: 1;
         flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        &__list {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }
@@ -66,13 +89,86 @@
   &__messages {
     display: flex;
     flex-grow: 1;
+
+    height: 100%;
+    justify-content: space-between;
     flex-direction: column;
+    width: auto;
+    background-color: #fff;
+
+    &__wrapper__form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      background-color: #ededed;
+    }
+
+    &__wrapper__window {
+      flex-grow: 1;
+      max-height: 100%;
+      background-color: #ededed;
+      overflow-y: auto;
+    }
   }
 }
+
 .chats__button {
   margin-top: auto;
 }
+
 .greating__text {
   font-size: 20px;
   margin: auto;
+}
+
+input.message__input {
+  width: 100%;
+  min-height: 60px;
+  height: auto;
+  text-align: start;
+  background-color: #fff;
+  border-radius: 0;
+  border: solid 1px #2a2f3f;
+  padding-left: 30px;
+  color: #2a2f3f;
+}
+
+div.message_lable {
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+}
+
+div.message__tooltip {
+  width: auto;
+  top: -50px;
+  left: 30px;
+}
+
+.messages__window {
+  display: flex;
+  max-height: 100%;
+  flex-direction: column;
+}
+
+.message {
+  border-radius: 10px;
+  margin: 10px;
+  max-width: 500px;
+  padding: 5px;
+  color: #2a2f3f;
+  background-color: #fff;
+
+  &__myself {
+    background-color: lightblue;
+    align-self: flex-end;
+  }
+
+  &__text {
+    font-size: 20px;
+  }
+
+  &__date {
+    text-align: end;
+  }
 }
