@@ -34,7 +34,7 @@ class UserController {
   async changeAvatar(formData: FormData) {
     await this.api.updateAvatar(formData);
     await Auth.getUser();
-    router.go('/profile');
+    window.location.reload();
   }
 
   async getUserByLogin(login: string) {
