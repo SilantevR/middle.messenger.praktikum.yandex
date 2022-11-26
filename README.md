@@ -1,4 +1,4 @@
-# Connector messenger
+# Conector messenger
 
 #### Яндекс "Мидл фронтенд разработчик" - проект "мессенджер"
 
