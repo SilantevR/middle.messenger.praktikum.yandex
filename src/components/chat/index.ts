@@ -1,23 +1,21 @@
 import Block from '../../core/block';
 import template from './chat.hbs';
-import { data } from '../../data/data';
+import withStore from '../../core/withStore';
+import { StateData } from '../../pages/chats';
 
-export default class Chat extends Block {
+export class ChatBase extends Block {
   static helper = 'Chat';
 
-  constructor() {
-    super({
-      data,
-      events: {
-        click: (e: MouseEvent) => {
-          e.preventDefault();
-          console.log(e.target);
-        },
-      },
-    });
+  constructor(data: StateData) {
+    super({ data });
   }
 
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }
 }
+const withChats = withStore((state) => (state));
+
+const Chat = withChats(ChatBase);
+
+export default Chat;

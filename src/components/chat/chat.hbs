@@ -4,12 +4,12 @@
       {{#if data.chats}}
           {{#each data.chats}}
             <label class="chat">
-            {{{ChatCard image=image theme=theme message=message looked=looked count=count}}}
+            {{{ChatCard id=id image=avatar theme=title message=content looked=unread_count count=unread_count}}}
             </label>
             <hr style="border: 1px solid #86868b" />
           {{/each}}
       {{/if}}
     </div>
   </div>
-  {{{Button  page="chats" type="button" title="Создать чат"}}}
+  
 </div>

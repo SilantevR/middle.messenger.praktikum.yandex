@@ -89,9 +89,12 @@ export default class Block {
   }
 
   private init() {
+    this._init();
     this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this._eventBus().emit(Block.EVENTS.FLOW_ADD_EVENTS);
   }
+
+  public _init() {}
 
   private _render() {
     const fragment = this.render();

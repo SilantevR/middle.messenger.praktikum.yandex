@@ -10,32 +10,45 @@ function queryStringify(data: any): string {
   if (typeof data !== 'object') {
     throw new Error('Error');
   }
-  const arr = ['?'];
-  Object.keys(data).forEach((key) => arr.push(`${key}=${data[key]}&`));
-  return arr.join('').slice(0, -1);
+  return `?${Object
+    .entries(data)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&')}`;
 }
 
-class HTTPTransport {
-  get = (url:string, options = {}) => this.request(url, {
+export default class HTTPTransport {
+  private _url: string;
+
+  constructor(url: string) {
+    this._url = url;
+  }
+
+  get = (url:string, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.GET,
   });
 
-  put = (url:string, options = {}) => this.request(url, {
+  put = (url:string, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.PUT,
   });
 
-  post = (url:string, options = {}) => this.request(url, {
+  post = (url:string, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.POST,
   });
 
-  delete = (url:string, options = {}) => this.request(url, {
+  delete = (url:string, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.DELETE,
   });
 
-  request = (url:string, options: {
-     method: any; headers?: any; data?: any;
-    }, timeout = 5000) => {
-    const { headers = {}, data, method } = options;
+  request = <Response>(url:string, options: {
+     method: HTTPMethods;
+     headers?: Record<string, string>;
+     data?: any;
+     withCredentials?: boolean,
+     type?: string
+    }, timeout = 5000): Promise<Response> => {
+    const {
+      headers = {}, data, method, withCredentials,
+    } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -50,26 +63,36 @@ class HTTPTransport {
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
       });
-
-      xhr.onload = function res() {
-        resolve(xhr);
-      };
+      if (withCredentials) {
+        xhr.withCredentials = withCredentials;
+      }
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+      xhr.responseType = 'json';
 
-      if (HTTPMethods.GET || !data) {
+      if (method === HTTPMethods.GET || !data) {
         xhr.send();
-      } else {
+      } else if (options.type) {
         xhr.send(data);
+      } else {
+        xhr.send(JSON.stringify(data));
       }
+
+      xhr.onload = () => {
+        if (xhr.status < 400) {
+          resolve(xhr.response);
+        } else {
+          throw new Error(xhr.response.reason);
+        }
+      };
     });
   };
 }
 
-function fetchWithRetry(url: any, options: any):any {
+/* export function fetchWithRetry(url: any, options: any):any {
   const http = new HTTPTransport();
   const { attempt = 1 } = options;
 
@@ -83,4 +106,4 @@ function fetchWithRetry(url: any, options: any):any {
   }
 
   return http.get(url, options).catch(errCounter);
-}
+} */

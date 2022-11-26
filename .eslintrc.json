@@ -10,7 +10,7 @@
     "rules": {
       "no-new": 0,
       "no-unused-vars": 2,
-      "max-len": [1, 100],
+      "max-len": [1, 100, {"ignoreStrings": true}],
       "max-params": [2, 3],
       "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
         "import/no-unresolved": 0,
@@ -21,6 +21,8 @@
         "no-underscore-dangle": "off",
         "no-shadow": ["off"],
         "import/extensions": ["off"],
-        "no-console": "off"
+        "no-console": "off",
+        "no-continue": "off"
+        
     }
   }

@@ -7,10 +7,10 @@
   margin: auto;
 }
 
-
 .login_lable,
 .signin_lable,
-.settings_lable {
+.settings_lable,
+.add_chat_lable {
   position: relative;
 
   &:nth-child(n + 2) {
