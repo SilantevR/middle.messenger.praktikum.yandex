@@ -7,7 +7,7 @@
     "build": "parcel build src/index.html --no-cache",
     "dev": "parcel src/index.html --no-cache",
     "es-lint": "eslint --fix \"src/**/*.{ts,js}\"",
-    "scss-lint": "stylelint --config --allow-empty-input .stylelintrc.json --fix \"src/**/*.scss\""
+    "scss-lint": "stylelint --ignore-pattern --allow-empty-input --config .stylelintrc.json --fix \"src/**/*.scss\""
   },
   "repository": {
     "type": "git",
