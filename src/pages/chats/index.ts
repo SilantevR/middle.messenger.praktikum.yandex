@@ -43,25 +43,10 @@ export class ChatsBase extends Block {
       events: {
         click: (e: MouseEvent) => {
           const element = e.target as any;
-
           if (element?.type === 'button' && element?.name === 'delete_user') {
             MessengerController.deleteUser(element.id);
           }
         },
-        load: () => {
-          const chatWindow = document.querySelector('.chats__messages__wrapper__window') as any;
-          if (chatWindow) {
-            const xH = chatWindow.scrollHeight;
-            chatWindow.scrollTo(0, xH);
-          }
-        },
-        scroll: () => {
-          const chatWindow = document.querySelector('.chats__messages__wrapper__window') as any;
-          if (chatWindow.scrollTop === 0) {
-            MessengerController.loadOldMessages();
-          }
-        },
-
         submit: (e: MouseEvent) => {
           e.preventDefault();
           const element = e.target as any;

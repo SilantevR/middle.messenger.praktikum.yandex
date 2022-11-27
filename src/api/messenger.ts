@@ -1,4 +1,5 @@
 import store from '../core/store';
+import MessengerController from '../controllers/messenger';
 
 export default class Messenger {
   private socketInst: WebSocket | null = null;
@@ -13,7 +14,6 @@ export default class Messenger {
 
     soket.onmessage = this.onmessage.bind(this);
     soket.onerror = this.error.bind(this);
-    soket.onclose = this.onclose.bind(this);
     soket.onopen = this.onopen.bind(this);
     this.socketInst = soket;
     this.loadMessages = 0;
@@ -27,10 +27,6 @@ export default class Messenger {
   getMessages() {
     this.loadMessages += 20;
     this.socketInst?.send(JSON.stringify({ type: 'get old', content: this.loadMessages }));
-  }
-
-  onclose() {
-    console.log('Соединение закрыто');
   }
 
   close() {
@@ -60,11 +56,12 @@ export default class Messenger {
       });
       if (this.loadedMessages.length > 0 && messages.length > 0) {
         store.set('messages', this.loadedMessages.concat(store.getState().messages));
-      } else if (this.loadedMessages.length === 0) {
+      } else if (this.loadedMessages.length === 0 && this.loadMessages === 0) {
         store.set('messages', messages.reverse());
       }
     } else if (typeof messages === 'object'
-    && !Array.isArray(messages) && messages.type === 'message'
+    && !Array.isArray(messages)
+    && messages.type === 'message'
     && store.getState().messages) {
       messages.time = new Date(messages.time).toLocaleTimeString([], {
         hour: '2-digit',
@@ -76,9 +73,28 @@ export default class Messenger {
       if (this.loadedMessages.length === 0) {
         this.loadedMessages = store.getState().messages;
         this.loadedMessages.push(messages);
-      } else { this.loadedMessages.push(messages); }
+      } else {
+        this.loadedMessages = store.getState().messages;
+        this.loadedMessages.push(messages);
+      }
 
       store.set('messages', this.loadedMessages);
+      const chatWindow = document.querySelector('.chats__messages__wrapper__window') as any;
+      const xH = chatWindow.scrollHeight;
+      chatWindow.scrollTo(0, xH);
+    }
+
+    if (messages.type !== 'pong' && this.loadMessages === 0) {
+      const chatWindow = document.querySelector('.chats__messages__wrapper__window') as any;
+      if (chatWindow) {
+        const xH = chatWindow.scrollHeight;
+        chatWindow.scrollTo(0, xH);
+        chatWindow.addEventListener('scroll', () => {
+          if (chatWindow.scrollTop === 0) {
+            MessengerController.loadOldMessages();
+          }
+        });
+      }
     }
   }
 

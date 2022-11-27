@@ -7,7 +7,7 @@ export interface ChangePassword {
     newPassword: string
 }
 export default class User extends BaseAPI {
-  HTTPTransport = new HTTP('https://ya-praktikum.tech/api/v2/user');
+  HTTPTransport = new HTTP('/user');
 
   updateData(data: SignupData) {
     const options: Record<string, any> = {};

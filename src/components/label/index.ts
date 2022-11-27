@@ -2,7 +2,7 @@ import Block from '../../core/block';
 import validation from '../../core/validation';
 import template from './label.hbs';
 
-interface LabelProps {
+export interface LabelProps {
   page: string;
   type: string;
   name: string;
@@ -23,7 +23,7 @@ export default class Label extends Block {
           const element = e.target as HTMLInputElement;
           this.refs[element.name].setProps(validation(element.name, element.value));
         },
-        blur: (e: FocusEvent) => {
+        change: (e: FocusEvent) => {
           e.preventDefault();
           const element = e.target as HTMLInputElement;
           this.refs[element.name].setProps(validation(element.name, element.value));

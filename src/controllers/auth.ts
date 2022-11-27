@@ -40,7 +40,7 @@ class AuthController {
     if (!user?.avatar) {
       user.avatar = 'https://ya-praktikum.tech/api/v2/resources/847107d3-d952-478a-8aa8-71503841a93f/616cb0fd-44ad-4da1-b59b-563a1748c1eb_default_profile_logo.png';
     } else {
-      user.avatar = `https://ya-praktikum.tech/api/v2/resources/${user.avatar}`;
+      user.avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
     }
     if (!user?.display_name) {
       user.display_name = '';

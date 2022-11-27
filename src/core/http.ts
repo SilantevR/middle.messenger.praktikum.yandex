@@ -19,8 +19,10 @@ function queryStringify(data: any): string {
 export default class HTTPTransport {
   private _url: string;
 
+  static BASE_URL = 'https://ya-praktikum.tech/api/v2';
+
   constructor(url: string) {
-    this._url = url;
+    this._url = `${HTTPTransport.BASE_URL}${url}`;
   }
 
   get = (url:string, options = {}) => this.request(this._url + url, {

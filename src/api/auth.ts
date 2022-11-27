@@ -18,7 +18,7 @@ export interface SignupData {
   }
 
 export default class Auth extends BaseAPI {
-  HTTPTransport = new HTTP('https://ya-praktikum.tech/api/v2/auth');
+  HTTPTransport = new HTTP('/auth');
 
   public login(data: LoginData) {
     const options: Record<string, unknown> = {};

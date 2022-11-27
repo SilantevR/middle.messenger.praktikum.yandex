@@ -1,20 +1,12 @@
 import Block from '../../core/block';
 import validation from '../../core/validation';
-import template from './message-input.hbs';
+import template from './settingsLabel.hbs';
+import { LabelProps } from '../label/index';
 
-interface MessageProps {
-  page: string;
-  type: string;
-  name: string;
-  value: string;
-  text: string;
-  required: string
-}
+export default class SettingsLabel extends Block {
+  static helper = 'SettingsLabel';
 
-export default class MessageInput extends Block {
-  static helper = 'MessageInput';
-
-  constructor(props: MessageProps) {
+  constructor(props: LabelProps) {
     super({
       ...props,
       events: {

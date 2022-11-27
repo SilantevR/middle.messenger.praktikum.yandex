@@ -6,7 +6,7 @@ export interface CreateChat {
 }
 
 export default class Chats extends BaseAPI {
-  HTTPTransport = new HTTP('https://ya-praktikum.tech/api/v2/chats');
+  HTTPTransport = new HTTP('/chats');
 
   createChat(title: string) {
     const options: Record<string, any> = {};

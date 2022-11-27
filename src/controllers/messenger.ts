@@ -38,10 +38,10 @@ class MessagesController {
     }
     const token = await ChatsController.chatToken(id) as any;
     const userId = store.getState().user.id;
-    const messenger = new Messenger(userId, id, token.token);
-    this.socket = messenger;
     this.users = await ChatsController.getUsers(this.id);
     store.set('users', this.users);
+    const messenger = new Messenger(userId, id, token.token);
+    this.socket = messenger;
     this.ping = setInterval(() => {
       this.sendMessage(JSON.stringify({ type: 'ping' }));
     }, 5000);
