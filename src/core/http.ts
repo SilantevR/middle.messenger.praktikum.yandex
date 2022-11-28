@@ -16,6 +16,14 @@ function queryStringify(data: any): string {
     .join('&')}`;
 }
 
+type Options = {
+  headers?: Record<string, string>;
+  data?: any;
+  withCredentials?: boolean,
+  type?: string
+};
+
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
 export default class HTTPTransport {
   private _url: string;
 
@@ -25,19 +33,23 @@ export default class HTTPTransport {
     this._url = `${HTTPTransport.BASE_URL}${url}`;
   }
 
-  get = (url:string, options = {}) => this.request(this._url + url, {
-    ...options, method: HTTPMethods.GET,
-  });
+  get: HTTPMethod = (url, options = {}) => {
+    let query = '';
+    if (options.data) {
+      query = `/${url}${queryStringify(options.data)}`;
+    }
+    return this.request(this._url + url + query, { ...options, method: HTTPMethods.GET });
+  };
 
-  put = (url:string, options = {}) => this.request(this._url + url, {
+  put: HTTPMethod = (url, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.PUT,
   });
 
-  post = (url:string, options = {}) => this.request(this._url + url, {
+  post: HTTPMethod = (url, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.POST,
   });
 
-  delete = (url:string, options = {}) => this.request(this._url + url, {
+  delete: HTTPMethod = (url, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.DELETE,
   });
 
@@ -54,12 +66,7 @@ export default class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      let query;
-      if (method === HTTPMethods.GET && data) {
-        query = `${url}${queryStringify(data)}`;
-      } else {
-        query = url;
-      }
+      const query = url;
       xhr.open(method, query);
 
       Object.keys(headers).forEach((key) => {
@@ -87,7 +94,7 @@ export default class HTTPTransport {
         if (xhr.status < 400) {
           resolve(xhr.response);
         } else {
-          throw new Error(xhr.response.reason);
+          console.log(xhr.response.reason);
         }
       };
     });

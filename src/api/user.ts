@@ -37,6 +37,7 @@ export default class User extends BaseAPI {
     return this.HTTPTransport.put('/profile/avatar', options);
   }
 
+  // eslint-disable-next-line consistent-return
   getUserByLogin(login: string): {} {
     const options: Record<string, any> = {};
     options.data = { login };

@@ -1,3 +1,5 @@
+@import "../colors";
+
 .button {
   width: 280px;
   height: 40px;
@@ -5,13 +7,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: $white;
   font-weight: bold;
   font-size: 16px;
-  background-color: #2a2f3f;
+  background-color: $main;
 
   &:hover {
-    background-color: #f8a488;
-    color: #2a2f3f;
+    background-color: $lightorange;
+    color: $main;
   }
 }

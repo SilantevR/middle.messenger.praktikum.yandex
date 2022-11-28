@@ -14,10 +14,9 @@ class UserController {
     try {
       await this.api.updateData(data);
       await Auth.getUser();
-
       router.go('/settings');
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -26,19 +25,29 @@ class UserController {
       await this.api.updatePassword(data);
       await Auth.getUser();
       router.go('/settings');
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.log(err);
     }
   }
 
   async changeAvatar(formData: FormData) {
-    await this.api.updateAvatar(formData);
-    await Auth.getUser();
-    window.location.reload();
+    try {
+      await this.api.updateAvatar(formData);
+      await Auth.getUser();
+      router.go('/messenger');
+      // window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getUserByLogin(login: string) {
-    return this.api.getUserByLogin(login);
+    try {
+      return this.api.getUserByLogin(login);
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
   }
 }
 export default new UserController();

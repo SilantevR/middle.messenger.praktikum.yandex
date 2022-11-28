@@ -1,3 +1,5 @@
+@import "../colors";
+
 .info__item {
   width: 490px;
   height: 40px;
@@ -5,12 +7,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ededed;
+  background-color: $gray;
   padding: 0 30px;
 
   &__field,
   &__value {
-    color: #f8a488;
+    color: $lightorange;
     font-size: 16px;
   }
 }

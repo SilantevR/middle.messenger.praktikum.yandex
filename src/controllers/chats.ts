@@ -13,8 +13,8 @@ class ChatsController {
       await this.api.createChat(title);
       const chats = await this.api.chats();
       store.set('chats', chats);
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -29,8 +29,8 @@ class ChatsController {
         user_id: true,
       }]);
       store.set('users', []);
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -43,26 +43,45 @@ class ChatsController {
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         user_id: true,
       }]);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
   }
 
   async updateChat(chatId: number, userId: number) {
-    await this.api.addUser(chatId, userId);
+    try {
+      await this.api.addUser(chatId, userId);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getUsers(chatId: number) {
-    return this.api.chatUsers(chatId);
+    try {
+      return this.api.chatUsers(chatId);
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
   }
 
   async deleteUser(chatId: number, userId: number) {
-    return this.api.deleteUser(chatId, userId);
+    try {
+      return this.api.deleteUser(chatId, userId);
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
   }
 
   async chatToken(id: number) {
-    const token = await this.api.chatToken(id);
-    return token;
+    try {
+      const token = await this.api.chatToken(id);
+      return token;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
   }
 }
 

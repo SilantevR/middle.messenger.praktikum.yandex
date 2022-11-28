@@ -1,3 +1,5 @@
+@import "../colors";
+
 .link {
   width: 280px;
   height: 40px;
@@ -5,26 +7,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2a2f3f;
+  background-color: var(--main);
 
   &__text {
     text-decoration: none;
     text-align: center;
     width: 100%;
     height: 100%;
-    color: #fff;
+    color: $white;
     font-weight: bold;
     font-size: 16px;
     line-height: 40px;
   }
 
   &:hover {
-    background-color: #f8a488;
-    color: #2a2f3f;
+    background-color: $lightorange;
+    color: $main;
     cursor: pointer;
   }
 
   &:hover a {
-    color: #2a2f3f;
+    color: $main;
   }
 }

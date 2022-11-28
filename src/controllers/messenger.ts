@@ -49,26 +49,42 @@ class MessagesController {
 
   sendMessage(message: string) {
     if (!this.socket) {
-      throw new Error('Выберите чат');
+      console.log('Выберите чат');
     }
-    this.socket.send(message);
+    try {
+      this.socket.send(message);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   loadOldMessages() {
-    this.socket.getMessages();
+    try {
+      this.socket.getMessages();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async addUser(login: string) {
-    const userId: any = await UserController.getUserByLogin(login);
-    await ChatsController.updateChat(this.id, userId[0].id);
-    this.users = await ChatsController.getUsers(this.id);
-    store.set('users', this.users);
+    try {
+      const userId: any = await UserController.getUserByLogin(login);
+      await ChatsController.updateChat(this.id, userId[0].id);
+      this.users = await ChatsController.getUsers(this.id);
+      store.set('users', this.users);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async deleteUser(userId: number) {
-    await ChatsController.deleteUser(this.id, userId);
-    this.users = await ChatsController.getUsers(this.id);
-    store.set('users', this.users);
+    try {
+      await ChatsController.deleteUser(this.id, userId);
+      this.users = await ChatsController.getUsers(this.id);
+      store.set('users', this.users);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

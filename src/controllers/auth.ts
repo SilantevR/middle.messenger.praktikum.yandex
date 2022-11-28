@@ -18,7 +18,7 @@ class AuthController {
 
       router.go('/messenger');
     } catch (err: any) {
-      throw new Error(err.message);
+      console.log(err);
     }
   }
 
@@ -30,29 +30,33 @@ class AuthController {
 
       router.go('/messenger');
     } catch (err: any) {
-      throw new Error(err.message);
+      console.log(err);
     }
   }
 
   async getUser() {
-    const user = await this.api.request() as SignupData;
+    try {
+      const user = await this.api.request() as SignupData;
 
-    if (!user?.avatar) {
-      user.avatar = 'https://ya-praktikum.tech/api/v2/resources/847107d3-d952-478a-8aa8-71503841a93f/616cb0fd-44ad-4da1-b59b-563a1748c1eb_default_profile_logo.png';
-    } else {
-      user.avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
-    }
-    if (!user?.display_name) {
-      user.display_name = '';
-    }
-
-    store.set('user', user);
-
-    if (user) {
-      if (window.location.pathname === '/' || window.location.pathname === '/sign-up') {
-        router.go('/messenger');
+      if (!user?.avatar) {
+        user.avatar = 'https://ya-praktikum.tech/api/v2/resources/847107d3-d952-478a-8aa8-71503841a93f/616cb0fd-44ad-4da1-b59b-563a1748c1eb_default_profile_logo.png';
+      } else {
+        user.avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
       }
-    } else { router.go('/'); }
+      if (!user?.display_name) {
+        user.display_name = '';
+      }
+
+      store.set('user', user);
+
+      if (user) {
+        if (window.location.pathname === '/' || window.location.pathname === '/sign-up') {
+          router.go('/messenger');
+        }
+      } else { router.go('/'); }
+    } catch (err: any) {
+      console.log(err);
+    }
   }
 
   async logout() {
@@ -62,7 +66,7 @@ class AuthController {
       store.set('chats', []);
       router.go('/');
     } catch (err) {
-      throw new Error(err);
+      console.log(err);
     }
   }
 }

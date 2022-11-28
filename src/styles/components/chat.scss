@@ -1,3 +1,5 @@
+@import "../colors";
+
 .chat {
   display: flex;
   width: 100%;
@@ -8,7 +10,7 @@
   }
 
   &:hover {
-    background-color: #f8a488;
+    background-color: $lightorange;
     cursor: pointer;
   }
 
@@ -40,7 +42,7 @@
       padding-left: 10px;
       display: flex;
       font-size: 16px;
-      color: #86868b;
+      color: $darkgrey;
       justify-content: space-between;
       align-items: center;
 
@@ -48,10 +50,10 @@
         width: 25px;
         height: 25px;
         text-align: center;
-        color: #fff;
+        color: $white;
         line-height: 25px;
         border-radius: 50%;
-        background-color: #2a2f3f;
+        background-color: $main;
       }
 
       &__count__0 {
