@@ -10,7 +10,12 @@ const inputs: any = {
   password: validatePassword,
 };
 
-export default function validation(name:string, value:string):unknown {
+interface validationResult {
+  required: string,
+  text: string
+}
+
+export default function validation(name:string, value:string): validationResult {
   if (!value) {
     return {
       required: 'false',

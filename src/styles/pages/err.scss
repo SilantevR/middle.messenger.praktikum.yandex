@@ -1,7 +1,8 @@
-.err {
+@import "../colors";
 
+.err {
   font-family: Grandstander, sans-serif;
-  color: #000;
+  color: $black;
   font-size: 128px;
   font-weight: bold;
   margin: 60px auto 0;
@@ -9,7 +10,6 @@
 
 .err__text {
   font-size: 20px;
-
   margin: 52px auto 0;
 }
 

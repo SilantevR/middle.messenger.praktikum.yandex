@@ -10,66 +10,98 @@ function queryStringify(data: any): string {
   if (typeof data !== 'object') {
     throw new Error('Error');
   }
-  const arr = ['?'];
-  Object.keys(data).forEach((key) => arr.push(`${key}=${data[key]}&`));
-  return arr.join('').slice(0, -1);
+  return `?${Object
+    .entries(data)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&')}`;
 }
 
-class HTTPTransport {
-  get = (url:string, options = {}) => this.request(url, {
-    ...options, method: HTTPMethods.GET,
-  });
+type Options = {
+  headers?: Record<string, string>;
+  data?: any;
+  withCredentials?: boolean,
+  type?: string
+};
 
-  put = (url:string, options = {}) => this.request(url, {
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
+export default class HTTPTransport {
+  private _url: string;
+
+  static BASE_URL = 'https://ya-praktikum.tech/api/v2';
+
+  constructor(url: string) {
+    this._url = `${HTTPTransport.BASE_URL}${url}`;
+  }
+
+  get: HTTPMethod = (url, options = {}) => {
+    let query = '';
+    if (options.data) {
+      query = `/${url}${queryStringify(options.data)}`;
+    }
+    return this.request(this._url + url + query, { ...options, method: HTTPMethods.GET });
+  };
+
+  put: HTTPMethod = (url, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.PUT,
   });
 
-  post = (url:string, options = {}) => this.request(url, {
+  post: HTTPMethod = (url, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.POST,
   });
 
-  delete = (url:string, options = {}) => this.request(url, {
+  delete: HTTPMethod = (url, options = {}) => this.request(this._url + url, {
     ...options, method: HTTPMethods.DELETE,
   });
 
-  request = (url:string, options: {
-     method: any; headers?: any; data?: any;
-    }, timeout = 5000) => {
-    const { headers = {}, data, method } = options;
+  request = <Response>(url:string, options: {
+     method: HTTPMethods;
+     headers?: Record<string, string>;
+     data?: any;
+     withCredentials?: boolean,
+     type?: string
+    }, timeout = 5000): Promise<Response> => {
+    const {
+      headers = {}, data, method, withCredentials,
+    } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      let query;
-      if (method === HTTPMethods.GET && data) {
-        query = `${url}${queryStringify(data)}`;
-      } else {
-        query = url;
-      }
+      const query = url;
       xhr.open(method, query);
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
       });
-
-      xhr.onload = function res() {
-        resolve(xhr);
-      };
+      if (withCredentials) {
+        xhr.withCredentials = withCredentials;
+      }
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+      xhr.responseType = 'json';
 
-      if (HTTPMethods.GET || !data) {
+      if (method === HTTPMethods.GET || !data) {
         xhr.send();
-      } else {
+      } else if (options.type) {
         xhr.send(data);
+      } else {
+        xhr.send(JSON.stringify(data));
       }
+
+      xhr.onload = () => {
+        if (xhr.status < 400) {
+          resolve(xhr.response);
+        } else {
+          console.log(xhr.response.reason);
+        }
+      };
     });
   };
 }
 
-function fetchWithRetry(url: any, options: any):any {
+/* export function fetchWithRetry(url: any, options: any):any {
   const http = new HTTPTransport();
   const { attempt = 1 } = options;
 
@@ -83,4 +115,4 @@ function fetchWithRetry(url: any, options: any):any {
   }
 
   return http.get(url, options).catch(errCounter);
-}
+} */

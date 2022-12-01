@@ -23,7 +23,7 @@ export default class MessageInput extends Block {
           const element = e.target as HTMLInputElement;
           this.refs[element.name].setProps(validation(element.name, element.value));
         },
-        blur: (e: FocusEvent) => {
+        change: (e: FocusEvent) => {
           e.preventDefault();
           const element = e.target as HTMLInputElement;
           this.refs[element.name].setProps(validation(element.name, element.value));

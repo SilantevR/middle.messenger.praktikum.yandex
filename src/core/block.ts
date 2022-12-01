@@ -2,7 +2,7 @@
 import { v4 as makeUUID } from 'uuid';
 import { EventBus } from './event_bus';
 
-export default class Block {
+export default class Block <Props extends Record<string, any> = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -17,7 +17,7 @@ export default class Block {
 
   public refs: Record<string, Block> = {};
 
-  public props: Record<string, any>;
+  public props: Props;
 
   public events: { [key: string]: (a: Event) => void;};
 
@@ -30,7 +30,7 @@ export default class Block {
   constructor(props: object = {}) {
     const eventBus = new EventBus();
 
-    this.props = this._makePropsProxy(props);
+    this.props = this._makePropsProxy(props) as Props;
 
     this._eventBus = () => eventBus;
 
@@ -89,9 +89,12 @@ export default class Block {
   }
 
   private init() {
+    this._init();
     this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this._eventBus().emit(Block.EVENTS.FLOW_ADD_EVENTS);
   }
+
+  public _init() {}
 
   private _render() {
     const fragment = this.render();

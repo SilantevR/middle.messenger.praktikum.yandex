@@ -1,3 +1,5 @@
+@import "../colors";
+
 .chat {
   display: flex;
   width: 100%;
@@ -8,7 +10,7 @@
   }
 
   &:hover {
-    background-color: #f8a488;
+    background-color: $lightorange;
     cursor: pointer;
   }
 
@@ -31,7 +33,7 @@
       font-size: 20px;
       font-weight: bold;
 
-      &__menu {
+      &__close {
         align-self: flex-start;
       }
     }
@@ -40,21 +42,21 @@
       padding-left: 10px;
       display: flex;
       font-size: 16px;
-      color: #86868b;
+      color: $darkgrey;
       justify-content: space-between;
       align-items: center;
 
-      &__count__unlooked {
+      &__count {
         width: 25px;
         height: 25px;
         text-align: center;
-        color: #fff;
+        color: $white;
         line-height: 25px;
         border-radius: 50%;
-        background-color: #2a2f3f;
+        background-color: $main;
       }
 
-      &__count__looked {
+      &__count__0 {
         display: none;
       }
     }

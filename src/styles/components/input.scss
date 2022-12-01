@@ -1,14 +1,16 @@
+@import "../colors";
+
 .input {
   width: 280px;
   height: 40px;
   border-radius: 20px;
-  background-color: #ededed;
-  color: #f8a488;
+  background-color: $gray;
+  color: $lightorange;
   font-size: 16px;
   text-align: center;
 
   &::placeholder {
-    color: #f8a488;
+    color: $lightorange;
   }
 
   &:nth-child(n + 2) {

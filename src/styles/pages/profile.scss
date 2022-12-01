@@ -1,3 +1,5 @@
+@import "../colors";
+
 .info__item {
   &:nth-child(n + 2) {
     margin-top: 20px;
@@ -19,6 +21,7 @@
 .account__link {
   &__button {
     margin-bottom: 10px;
+
     &:hover {
       cursor: pointer;
     }

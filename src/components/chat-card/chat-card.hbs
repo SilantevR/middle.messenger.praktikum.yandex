@@ -1,18 +1,15 @@
-  <div class="chat">
+  <div id="{{id}}" class="chat" data-title="{{theme}}" data-user ="{{user}}" data-chat="true">
     <div class="chat__container">
-      <img src={{image}} class="chat__container__image" />
+      <img alt="Аватар чата" src='./default_image.png' class="chat__container__image" />
     </div>
     <div class="chat__content">
       <div class="chat__content__theme">
         <p class="chat__content__theme__text">{{theme}}</p>
-        <img
-          src="./chat_menu.svg"
-          class="chat__content__theme__menu"
-        />
+        <button id={{id}} class="chat__content__theme__close" type="button" data-close="true" name="delete_chat">&#10008</button>
       </div>
       <div class="chat__content__message">
         <p class="chat__content__message__text">{{message}}</p>
-        <div class="chat__content__message__count__{{looked}}">{{count}}</div>
+        <div class="chat__content__message__count  chat__content__message__count__{{looked}}">{{count}}</div>
       </div>
 
     </div>

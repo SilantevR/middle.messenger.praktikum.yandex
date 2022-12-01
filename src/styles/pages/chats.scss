@@ -1,8 +1,10 @@
+@import "../colors";
+
 .chats {
   display: flex;
   height: 100%;
-
   width: 100%;
+
   &__menu {
     height: 100%;
     display: flex;
@@ -11,7 +13,7 @@
 
     &__profile {
       width: 100%;
-      background-color: #2a2f3f;
+      background-color: $main;
       height: 60px;
       display: flex;
       padding: 0 30px;
@@ -27,7 +29,7 @@
 
       &__link__text {
         text-decoration: none;
-        color: #fff;
+        color: $white;
         font-weight: bold;
         font-size: 20px;
 
@@ -37,35 +39,32 @@
       }
     }
 
-
     &__container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       flex-direction: column;
       flex-grow: 1;
-      background-color: #fff;
+      height: calc(100% - 60px);
+      background-color: $white;
       width: 100%;
       padding: 30px;
 
       &__search {
         width: 100%;
         height: 40px;
-        margin-bottom: 20px;
         border-radius: 20px;
-        background-color: #ededed;
-        color: #f8a488;
+        background-color: $gray;
+        color: $lightorange;
         font-size: 16px;
         text-align: center;
-
-        background-image: url("../../../static/search_icon.svg");
+        background-image: url("../../static/search_icon.svg");
         background-size: 25px;
         background-repeat: no-repeat;
         background-position: left 20px center;
 
         &::placeholder {
-          color: #f8a488;
+          color: $lightorange;
         }
       }
 
@@ -76,11 +75,14 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        margin-top: 40px;
+        max-height: calc(100vh - 420px);
 
         &__list {
           width: 100%;
           display: flex;
           flex-direction: column;
+          overflow-y: auto;
         }
       }
     }
@@ -89,31 +91,37 @@
   &__messages {
     display: flex;
     flex-grow: 1;
-
     height: 100%;
     justify-content: space-between;
     flex-direction: column;
     width: auto;
-    background-color: #fff;
+    background-color: $white;
+    position: relative;
 
     &__wrapper__form {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      background-color: #ededed;
+      background-color: $gray;
     }
 
     &__wrapper__window {
       flex-grow: 1;
       max-height: 100%;
-      background-color: #ededed;
+      background-color: $gray;
       overflow-y: auto;
     }
   }
 }
 
-.chats__button {
+.chats_lable {
   margin-top: auto;
+  position: relative;
+}
+
+.add_chat__button,
+.add_user__button {
+  margin-top: 20px;
 }
 
 .greating__text {
@@ -126,11 +134,11 @@ input.message__input {
   min-height: 60px;
   height: auto;
   text-align: start;
-  background-color: #fff;
+  background-color: $white;
   border-radius: 0;
-  border: solid 1px #2a2f3f;
+  border: solid 1px $main;
   padding-left: 30px;
-  color: #2a2f3f;
+  color: $main;
 }
 
 div.message_lable {
@@ -151,16 +159,56 @@ div.message__tooltip {
   flex-direction: column;
 }
 
+.chat__users {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $white;
+  opacity: 0.8;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chat__user {
+  justify-content: start;
+  color: $white;
+  background-color: $main;
+  width: auto;
+  height: 50px;
+  align-items: center;
+  margin: 10px;
+  display: flex;
+  border-radius: 10px;
+  padding: 5px;
+
+  &__button {
+    background-color: $lightorange;
+    margin-left: 5px;
+    border-radius: 50%;
+    width: 18px;
+    height: auto;
+  }
+}
+
+.chat__content__theme__close {
+  background-color: $lightorange;
+  margin-left: 5px;
+  border-radius: 50%;
+  width: 18px;
+  height: auto;
+}
+
 .message {
   border-radius: 10px;
   margin: 10px;
   max-width: 500px;
   padding: 5px;
-  color: #2a2f3f;
-  background-color: #fff;
+  color: $main;
+  background-color: $white;
 
   &__myself {
-    background-color: lightblue;
+    background-color: $lightblue;
     align-self: flex-end;
   }
 
