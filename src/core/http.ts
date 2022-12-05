@@ -29,6 +29,8 @@ export default class HTTPTransport {
 
   static BASE_URL = 'https://ya-praktikum.tech/api/v2';
 
+  query: string;
+
   constructor(url: string) {
     this._url = `${HTTPTransport.BASE_URL}${url}`;
   }
@@ -36,7 +38,7 @@ export default class HTTPTransport {
   get: HTTPMethod = (url, options = {}) => {
     let query = '';
     if (options.data) {
-      query = `/${url}${queryStringify(options.data)}`;
+      query = `/${queryStringify(options.data)}`;
     }
     return this.request(this._url + url + query, { ...options, method: HTTPMethods.GET });
   };
@@ -66,8 +68,8 @@ export default class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      const query = url;
-      xhr.open(method, query);
+      this.query = url;
+      xhr.open(method, this.query);
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
@@ -93,8 +95,9 @@ export default class HTTPTransport {
       xhr.onload = () => {
         if (xhr.status < 400) {
           resolve(xhr.response);
+          // console.log(xhr.status)
         } else {
-          console.log(xhr.response.reason);
+          reject(xhr.response.reason);
         }
       };
     });
