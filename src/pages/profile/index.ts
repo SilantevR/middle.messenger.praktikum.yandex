@@ -1,6 +1,7 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
 import withStore from '../../core/withStore';
-import template from './profile.hbs';
+import template from './profile';
 import AuthController from '../../controllers/auth';
 import UserController from '../../controllers/user';
 import { StateData } from '../chats/index';
@@ -36,7 +37,7 @@ export class ProfileBase extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }
 const withUser = withStore((state: any) => (state));

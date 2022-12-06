@@ -1,5 +1,6 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
-import template from './login.hbs';
+import template from './login';
 import AuthController from '../../controllers/auth';
 import withStore from '../../core/withStore';
 import { StateData } from '../chats/index';
@@ -34,7 +35,7 @@ export class LoginBase extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }
 

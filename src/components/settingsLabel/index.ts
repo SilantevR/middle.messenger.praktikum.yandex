@@ -1,6 +1,7 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
 import validation from '../../core/validation';
-import template from './settingsLabel.hbs';
+import template from './settingsLabel';
 import { LabelProps } from '../label/index';
 
 export default class SettingsLabel extends Block {
@@ -25,6 +26,6 @@ export default class SettingsLabel extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }

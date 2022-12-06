@@ -25,6 +25,7 @@ import Page500 from './pages/err500';
 import Chats from './pages/chats';
 import AuthController from './controllers/auth';
 import ChatsController from './controllers/chats';
+import './styles/style.scss';
 
 registerComponent(Input);
 registerComponent(SettingsInput);

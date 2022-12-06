@@ -1,5 +1,6 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
-import template from './link.hbs';
+import template from './link';
 import router from '../../core/router';
 
 interface LinkProps {
@@ -27,6 +28,6 @@ export default class Link extends Block {
   }
 
   protected render() {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }

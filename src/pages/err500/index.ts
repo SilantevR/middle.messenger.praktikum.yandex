@@ -1,10 +1,11 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
-import template from './err500.hbs';
+import template from './err500';
 import withStore from '../../core/withStore';
 
 export class Page500Base extends Block {
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }
 

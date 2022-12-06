@@ -1,5 +1,6 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
-import template from './settings.hbs';
+import template from './settings';
 import UserController from '../../controllers/user';
 import AuthController from '../../controllers/auth';
 import withStore from '../../core/withStore';
@@ -61,7 +62,7 @@ export class SettingsBase extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }
 
