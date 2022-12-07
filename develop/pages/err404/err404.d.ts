@@ -1,2 +1,0 @@
-declare const template = "<div class=\"body\">\n    <h2 class=\"page__header\">Ooooooooooopppps!!!</h2>\n    <h1 class=\"err\">404</h1>\n    <h3 class=\"err__text\">\u0421\u0442\u0440\u0430\u043D\u0438\u0446\u044B \u043D\u0435\u0442, \u043D\u043E \u0435\u0441\u0442\u044C \u0434\u0440\u0443\u0433\u0438\u0435! :)</h3>\n    {{{Link  page=\"err\" index=\"messenger\" title=\"\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A \u0447\u0430\u0442\u0430\u043C\"}}}\n</div>";
-export default template;

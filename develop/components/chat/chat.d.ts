@@ -1,2 +1,0 @@
-declare const template = "<div class=\"chats__menu__container__wrapper\">\n  <div class=\"chats__menu__container__wrapper__list\">\n    <div class=\"chat_wrapper\">\n      {{#if data.chats}}\n          {{#each data.chats}}\n            <label class=\"chat\">\n            {{{ChatCard id=id image=avatar \n              theme=title message=content \n              looked=unread_count count=unread_count}}}\n            </label>\n            <hr style=\"border: 1px solid #86868b\" />\n          {{/each}}\n      {{/if}}\n    </div>\n  </div>\n  \n</div>";
-export default template;
