@@ -1,5 +1,6 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
-import template from './chats.hbs';
+import template from './chats';
 import ChatsController from '../../controllers/chats';
 import withStore from '../../core/withStore';
 import MessengerController from '../../controllers/messenger';
@@ -110,7 +111,7 @@ export class ChatsBase extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }
 const withUser = withStore((state) => (state));

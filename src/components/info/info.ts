@@ -1,4 +1,6 @@
-<div class="info__item">
+const template = `<div class="info__item">
   <p class="info__item__field">{{field}}</p>
   <p class="info__item__value">{{value}}</p>
-</div>
+</div>`;
+
+export default template;

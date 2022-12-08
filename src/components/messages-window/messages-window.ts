@@ -1,4 +1,4 @@
-<div class="messages__window">
+const template = `<div class="messages__window">
   <div class="chat__users">
     {{#if data.users}}
       {{#each data.users}}
@@ -12,4 +12,6 @@
         {{{Message text=content date=time incoming=user_id}}}
       {{/each}}
   {{/if}}
-</div>
+</div>`;
+
+export default template;

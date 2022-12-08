@@ -1,6 +1,7 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
 import validation from '../../core/validation';
-import template from './label.hbs';
+import template from './label';
 
 export interface LabelProps {
   page: string;
@@ -33,6 +34,6 @@ export default class Label extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }

@@ -1,7 +1,9 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
-import template from './chat-card.hbs';
+import template from './chat-card';
 import ChatsController from '../../controllers/chats';
 import Messenger from '../../controllers/messenger';
+import defaultImage from '../../../static/default_image.png';
 
 export interface ChatData {
   avatar: string | null;
@@ -18,6 +20,7 @@ export default class ChatCard extends Block {
   constructor(data: ChatData) {
     super({
       ...data,
+      defaultImage,
       events: {
         click(e: MouseEvent) {
           e.preventDefault();
@@ -35,6 +38,6 @@ export default class ChatCard extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }

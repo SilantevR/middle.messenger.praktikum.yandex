@@ -2,12 +2,12 @@ import Block from './block';
 import Route from './route';
 import store from './store';
 
-class Router {
+export class Router {
   private static __instance: Router = new Router('#app');
 
-  private routes: Route[] = [];
+  public routes: Route[] = [];
 
-  private history = window.history;
+  public history = window.history;
 
   private currentRoute: Route | null = null;
 

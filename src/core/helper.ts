@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { HelperOptions } from 'handlebars';
-import handlebars from 'handlebars/dist/handlebars.runtime';
+import handlebars, { HelperOptions } from 'handlebars';
 import Block from './block';
 
 export interface BlockConstructor<Props = any> {

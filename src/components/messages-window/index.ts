@@ -1,5 +1,6 @@
+import Handlebars from 'handlebars';
 import Block from '../../core/block';
-import template from './messages-window.hbs';
+import template from './messages-window';
 import withStore from '../../core/withStore';
 import { StateData } from '../../pages/chats';
 
@@ -11,7 +12,7 @@ export class MessagesWindowBase extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(Handlebars.compile(template), this.props);
   }
 }
 

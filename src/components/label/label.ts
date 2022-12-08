@@ -1,4 +1,6 @@
-<div class="{{name}}_lable lable">
+const template = `<div class="{{name}}_lable {{page}}_lable">
   {{{Input page=page type=type name=name value=value}}}
   {{{Tooltip input=name text=text required=required pattern=name}}}
-</div>
+</div>`;
+
+export default template;
