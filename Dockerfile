@@ -1,8 +1,13 @@
-FROM ubuntu:latest
-WORKDIR /app
-COPY ["package.json","package-lock.json","./"]
-RUN apt install -y nodejs && apt install -y npm && npm install
-COPY . .
-RUN npm run build
+FROM node:latest
+WORKDIR /var/www
+
+COPY . /var/www/
+
+RUN mkdir -p /var/www \
+  && cd /var/www \
+  && npm install \
+  && npm run build 
+
 EXPOSE 3000
-CMD node ./server.js
+
+CMD node server.js

@@ -32,9 +32,9 @@
 <br>
 Макет мессенджера: [Figma](https://www.figma.com/file/aa0x9aNEI1tPs8xwy4V50Z/Conector-messenger)
 <br>
-Netlify: [Netlify](https://stirring-unicorn-bfb7c6.netlify.app/settings.html)
+Деплой на Render через Docker: [Render](https://conector.onrender.com)
 <br>
-Heroku: [Heroku](https://)
+Netlify: [Netlify](https://stirring-unicorn-bfb7c6.netlify.app/settings.html)
 <br>
 #PR: [№4](https://github.com/SilantevR/middle.messenger.praktikum.yandex/pull/4)
 

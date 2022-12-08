@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rimraf \"./dist\" && rimraf \"./develop\"",
     "server": "node server.js --open",
-    "build": "npm run clean && webpack",
+    "build": "webpack --config webpack.config.js",
     "start": "npm run build && npm run server",
     "es-lint": "eslint --fix \"src/**/*.{ts,js}\"",
     "scss-lint": "stylelint --ignore-pattern --allow-empty-input --config .stylelintrc.json --fix \"src/**/*.scss\"",
